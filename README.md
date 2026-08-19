@@ -4,14 +4,6 @@ Transcribes meeting audio and generates structured, action-oriented summaries â€
 
 ---
 
-## Demo
-
-[![Meeting Summarizer Demo](https://img.youtube.com/vi/7OWAqtElLrY/maxresdefault.jpg)](https://youtu.be/7OWAqtElLrY)
-
-> Click the thumbnail above to watch the full demo on YouTube.
-
----
-
 ## Table of Contents
 
 1. [Demo](#demo)
@@ -20,6 +12,12 @@ Transcribes meeting audio and generates structured, action-oriented summaries â€
 4. [Architecture](#architecture)
 5. [Design Decisions & Tradeoffs](#design-decisions--tradeoffs)
 6. [Structured Output Schema & Example](#structured-output-schema--example)
+
+---
+
+## Demo
+
+https://github.com/anjalibibra/meeting_summarizer/raw/main/Demo_video.mp4
 
 ---
 
