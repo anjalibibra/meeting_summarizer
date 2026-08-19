@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Hand-Crafted Warm Cream Aesthetic System ─────────────────────────────── */
+:root {
+  --bg-cream: #FDF5DF;
+  --bg-card: #FFFFFF;
+  --text-main: #243447;
+  --text-muted: #5A6E85;
+  --accent-teal: #5EBEC4;
+  --accent-teal-dark: #46A4A9;
+  --accent-pink: #F92C85;
+  --accent-pink-hover: #E01B70;
+  --accent-yellow: #F5C84B;
+  --border-subtle: rgba(36, 52, 71, 0.12);
+  --border-teal: rgba(94, 190, 196, 0.4);
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: rgba(249, 44, 133, 0.2);
+  selection-color: #243447;
+}
+
+/* ── Paper Texture Overlay ────────────────────────────────────────────────── */
+.paper-texture {
+  background-color: #FDF5DF;
+  background-image: radial-gradient(rgba(36, 52, 71, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* ── Hand-Drawn Card Styles ───────────────────────────────────────────────── */
+.hand-card {
+  background: #FFFFFF;
+  border: 2px solid var(--text-main);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px 0px var(--text-main);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hand-card:hover {
+  transform: translateY(-3px) rotate(-0.5deg);
+  box-shadow: 6px 6px 0px 0px var(--text-main);
+}
+
+.hand-card-teal {
+  background: #FFFFFF;
+  border: 2px solid #5EBEC4;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px 0px #5EBEC4;
+}
+
+.hand-card-pink {
+  background: #FFFFFF;
+  border: 2px solid #F92C85;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px 0px #F92C85;
+}
+
+.hand-card-yellow {
+  background: #FFFFFF;
+  border: 2px solid #243447;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px 0px #F5C84B;
+}
+
+/* ── Hand-Drawn Buttons ───────────────────────────────────────────────────── */
+.btn-pink {
+  background-color: #F92C85;
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 2px solid #243447;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0px 0px #243447;
+  transition: all 0.2s ease;
+}
+
+.btn-pink:hover {
+  background-color: #E01B70;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px 0px #243447;
+}
+
+.btn-pink:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0px 0px #243447;
+}
+
+.btn-teal-outline {
+  background-color: transparent;
+  color: #243447;
+  font-weight: 600;
+  border: 2px solid #5EBEC4;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0px 0px #5EBEC4;
+  transition: all 0.2s ease;
+}
+
+.btn-teal-outline:hover {
+  background-color: rgba(94, 190, 196, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px 0px #5EBEC4;
+}
+
+/* ── Hand-Drawn Annotation / Scribble Font Feel ────────────────────────────── */
+.font-handwritten {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Casual', cursive, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Waveform Animation ──────────────────────────────────────────────────── */
+.hand-waveform-bar {
+  width: 4px;
+  border-radius: 4px;
+  background-color: #5EBEC4;
+  animation: handWavePulse 1.2s ease-in-out infinite alternate;
+}
+
+.hand-waveform-bar:nth-child(2n) { animation-delay: 0.2s; background-color: #F92C85; }
+.hand-waveform-bar:nth-child(3n) { animation-delay: 0.4s; background-color: #F5C84B; }
+.hand-waveform-bar:nth-child(4n) { animation-delay: 0.1s; background-color: #5EBEC4; }
+.hand-waveform-bar:nth-child(5n) { animation-delay: 0.3s; background-color: #243447; }
+
+@keyframes handWavePulse {
+  0% { height: 8px; opacity: 0.5; }
+  100% { height: 32px; opacity: 1; }
+}
+
+/* ── Continuous Flowing Waveform Particle Animation ────────────────────────── */
+@keyframes flowLeftToRight {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+.wave-flow-particle {
+  animation: flowLeftToRight 3s linear infinite;
+}
+
+/* ── Floating Hands Animation ────────────────────────────────────────────── */
+@keyframes handFloatHuman {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+
+@keyframes handFloatRobot {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+.animate-hand-human {
+  animation: handFloatHuman 5s ease-in-out infinite;
+}
+
+.animate-hand-robot {
+  animation: handFloatRobot 5s ease-in-out infinite;
+}
+
+/* ── Low Confidence Underline & Badges for Cream Theme ────────────────────── */
+.segment-low-confidence {
+  border-bottom: 2.5px dashed #F92C85;
+  background: rgba(249, 44, 133, 0.08);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.speaker-chip-uncertain {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(36, 52, 71, 0.08);
+  color: #5A6E85;
+  font-style: italic;
+  font-size: 0.75rem;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(36, 52, 71, 0.2);
+}
+
+.speaker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  border: 1.5px solid #243447;
+}
+
+.speaker-0 { background: #5EBEC4; color: #243447; }
+.speaker-1 { background: #F92C85; color: #FFFFFF; }
+.speaker-2 { background: #F5C84B; color: #243447; }
+.speaker-3 { background: #243447; color: #FDF5DF; }
+
+.flag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1.5px solid #243447;
+}
+
+.flag-supported {
+  background: #5EBEC4;
+  color: #243447;
+}
+
+.flag-uncertain {
+  background: #F5C84B;
+  color: #243447;
+}
+
+.flag-hallucinated {
+  background: #F92C85;
+  color: #FFFFFF;
+}
+
+/* ── Custom Scrollbar for Cream Theme ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FDF5DF;
+}
+::-webkit-scrollbar-thumb {
+  background: #5EBEC4;
+  border: 2px solid #243447;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #46A4A9;
+}
+
+/* ── Reduced Motion Support ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

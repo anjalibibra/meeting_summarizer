@@ -1,0 +1,38 @@
+# Meeting Summarizer — Backend Dependencies
+# Every dependency is justified; see README.md "Design Decisions" for rationale.
+#
+# To install:
+#   python -m venv venv
+#   venv\Scripts\activate          # Windows
+#   pip install -r requirements.txt
+#
+# Optional (not installed by default — see README for setup instructions):
+#   pip install faster-whisper     # Faster CPU inference alternative to openai-whisper
+#   pip install pyannote.audio     # Production speaker diarization (requires HF token)
+
+# ── Web framework ─────────────────────────────────────────────────────────────
+fastapi>=0.111.0          # Web framework: async, Pydantic-native, auto OpenAPI docs
+uvicorn[standard]>=0.29.0 # ASGI server; [standard] adds websocket + http2 extras
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+pydantic-settings>=2.2.0  # Type-safe .env loading; already a Pydantic v2 dependency
+
+# ── Database ──────────────────────────────────────────────────────────────────
+sqlalchemy>=2.0.0         # ORM; dialect-agnostic — swap SQLite to Postgres via env var only
+
+# ── LLM ───────────────────────────────────────────────────────────────────────
+openai>=1.30.0            # LLM API client; supports OpenAI + compatible endpoints
+
+# ── ASR ───────────────────────────────────────────────────────────────────────
+openai-whisper>=20231117  # Local Whisper ASR; no per-minute billing, no data leaving machine
+
+# ── Audio processing ──────────────────────────────────────────────────────────
+pydub>=0.25.1             # Audio splitting/conversion for long-file chunking; wraps ffmpeg
+
+# ── File handling ─────────────────────────────────────────────────────────────
+python-multipart>=0.0.9   # Required by FastAPI to parse multipart/form-data uploads
+aiofiles>=23.2.1          # Async file I/O for streaming upload saves without blocking
+
+# ── Testing (dev only) ────────────────────────────────────────────────────────
+pytest>=8.0.0             # Test runner
+httpx>=0.27.0             # FastAPI TestClient transport (required by Starlette's test utils)
