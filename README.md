@@ -4,14 +4,22 @@ Transcribes meeting audio and generates structured, action-oriented summaries �
 
 ---
 
+## Demo
+
+[![Meeting Summarizer Demo](https://img.youtube.com/vi/7OWAqtElLrY/maxresdefault.jpg)](https://youtu.be/7OWAqtElLrY)
+
+> Click the thumbnail above to watch the full demo on YouTube.
+
+---
+
 ## Table of Contents
 
-1. [What It Does](#what-it-does)
-2. [How to Run Locally](#how-to-run-locally)
-3. [Architecture](#architecture)
-4. [Design Decisions & Tradeoffs](#design-decisions--tradeoffs)
-5. [Structured Output Schema & Example](#structured-output-schema--example)
-6. [Known Limitations / What I'd Improve](#known-limitations--what-id-improve-with-more-time)
+1. [Demo](#demo)
+2. [What It Does](#what-it-does)
+3. [How to Run Locally](#how-to-run-locally)
+4. [Architecture](#architecture)
+5. [Design Decisions & Tradeoffs](#design-decisions--tradeoffs)
+6. [Structured Output Schema & Example](#structured-output-schema--example)
 
 ---
 
@@ -342,42 +350,3 @@ The structured output would be:
 }
 ```
 
----
-
-## Known Limitations / What I'd Improve With More Time
-
-### Limitations
-
-1. **Heuristic diarization is unreliable for > 2 speakers**
-   The silence-gap heuristic doesn't distinguish between multiple speakers — it only detects speaker *changes*, not speaker *identity*. With 4+ people in a meeting it produces many incorrectly labelled segments. pyannote is the real solution, but requires an extra setup step.
-
-2. **No real-time / streaming transcription**
-   The entire file must be uploaded before transcription starts. For live meetings, streaming ASR (e.g., WebSocket-based Whisper with VAD) would be significantly better UX but is substantially more complex.
-
-3. **Verification doubles LLM cost with no cost control**
-   There's currently no configuration for when to skip the verification pass (e.g., for short meetings or when action items are empty). A production system would add a condition check.
-
-4. **Speaker labels don't survive user correction**
-   The UI shows "Speaker 1", "Speaker 2" etc. There's no way for a user to say "Speaker 1 is Alice". Adding a rename feature would require a small API endpoint and local state in the frontend.
-
-5. **No authentication or multi-user support**
-   The app is a single-user tool. Adding auth (even basic API key auth) and per-user job isolation would be needed before sharing with a team.
-
-6. **pydub requires ffmpeg system binary**
-   This is an implicit dependency not captured in `requirements.txt`. It's documented in the README but is an easy source of "it doesn't work" confusion for new users. Wrapping ffmpeg install in a setup script would help.
-
-7. **LLM output can fail silently on unusual meeting content**
-   Very short meetings (< 1 min), non-English audio, or highly technical jargon can cause the LLM to return unexpected structures. The JSON extraction fallback handles most cases but `executive_summary` may be empty or terse.
-
-8. **No persistent job history**
-   Jobs exist in SQLite but there's no list/history page in the UI. Adding a `/jobs` listing endpoint and a simple history view is a small addition.
-
-### What I'd Improve With More Time
-
-- **Alembic database migrations** instead of `create_all` at startup
-- **Streaming Whisper with VAD** for live meeting transcription
-- **Speaker name editing** — let users rename "Speaker 1" to "Alice"
-- **Export to PDF / Markdown** — downloadable meeting minutes
-- **Webhook support** — POST results to a URL when processing completes (Slack, Notion, Jira)
-- **Proper async pipeline** using Celery + Redis for production concurrency
-- **Model caching** — load Whisper model once at server startup and share it across requests (currently lazy-loaded per pipeline run)
