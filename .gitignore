@@ -55,3 +55,8 @@ htmlcov/
 # Temporary files
 *.tmp
 *.temp
+
+# Large media files
+Demo_video.mp4
+sample_meeting.wav
+

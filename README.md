@@ -19,8 +19,6 @@ Transcribes meeting audio and generates structured, action-oriented summaries â€
 
 [![Watch the demo](https://img.youtube.com/vi/7OWAqtElLrY/maxresdefault.jpg)](https://youtu.be/7OWAqtElLrY)
 
-https://github.com/anjalibibra/meeting_summarizer/blob/main/Demo_video.mp4
-
 ---
 
 ## What It Does
